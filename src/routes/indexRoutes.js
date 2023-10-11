@@ -1,16 +1,22 @@
-const express = require('express');
+const express = require("express");
 
-const renderTemplate = require('../lib/renderTemplate');
-const Home = require('../views/Home');
-const { Tea } = require('../../db/models');
+const renderTemplate = require("../lib/renderTemplate");
+const Home = require("../views/Home");
+
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  try {
-    renderTemplate(Home, { name: 'Толик' }, res);
-  } catch (error) {
-    res.send(`ОШИБКА, ${error}`);
-  }
+const { checkUser } = require("../middlewares/common");
+
+router.get("/", checkUser, (req, res) => {
+  const { name } = req.session;
+  renderTemplate(Home, { name }, res);
+});
+
+router.get("/logout", checkUser, (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie("TeaCookie");
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
