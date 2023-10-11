@@ -13,6 +13,8 @@ const dbConnectionCheck = require('../db/dbConnectChecker');
 const { PORT } = process.env;
 
 const app = express();
+const teaCardRouter = require('./routes/teaCard');
+const teaFetchRouter = require('./routes/getTeaDetails');
 dbConnectionCheck();
 
 const indexRoutes = require('./routes/indexRoutes');
@@ -45,9 +47,14 @@ app.use(checkSession);
 // * Подключи сессии как мидлу
 // app.use(session(sessionConfig));
 app.use('/', indexRoutes);
+
+app.use('/', teaCardRouter);
+app.use('/', teaFetchRouter);
+
 app.use('/login', secureRoute, loginRoutes);
 app.use('/register', secureRoute, regRoutes);
 app.use('/profile', profileRoutes)
+
 
 app.listen(PORT ?? 3100, () => {
   console.log('Сервер запущен!');

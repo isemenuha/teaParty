@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   Tea.init(
     {
       type: DataTypes.STRING,
-      location: DataTypes.STRING,
+      shirota: DataTypes.STRING,
+      dolgota: DataTypes.STRING,
       image: DataTypes.TEXT,
       description: DataTypes.TEXT,
     },

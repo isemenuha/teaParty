@@ -12,7 +12,10 @@ module.exports = {
       type: {
         type: Sequelize.STRING
       },
-      location: {
+      shirota: {
+        type: Sequelize.STRING
+      },
+      dolgota: {
         type: Sequelize.STRING
       },
       image: {
