@@ -27,6 +27,11 @@ module.exports = function Layout({ children, name }) {
                     <span className="nav-link">Привет, {name}</span>
                   </li>
                   <li className="nav-item">
+                    <a className="nav-link" href="/profile">
+                      Личный кабинет
+                    </a>
+                  </li>
+                  <li className="nav-item">
                     <a className="nav-link" href="/logout">
                       Выйти
                     </a>
