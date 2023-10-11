@@ -18,6 +18,7 @@ dbConnectionCheck();
 const indexRoutes = require('./routes/indexRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const regRoutes = require('./routes/regRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 
 // * Конфиг для куки в виде файла сессий
 const sessionConfig = {
@@ -46,6 +47,7 @@ app.use(checkSession);
 app.use('/', indexRoutes);
 app.use('/login', secureRoute, loginRoutes);
 app.use('/register', secureRoute, regRoutes);
+app.use('/profile', profileRoutes)
 
 app.listen(PORT ?? 3100, () => {
   console.log('Сервер запущен!');
