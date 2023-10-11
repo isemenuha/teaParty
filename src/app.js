@@ -6,9 +6,10 @@ const path = require('path');
 const dbConnectionCheck = require('../db/dbConnectChecker');
 
 const { PORT } = process.env;
-const { Tea } = require('../db/models');
+
 const app = express();
 const teaCardRouter = require('./routes/teaCard');
+const teaFetchRouter = require('./routes/getTeaDetails');
 dbConnectionCheck();
 
 // * Конфиг для куки в виде файла сессий
@@ -34,14 +35,8 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 // app.use(session(sessionConfig));
 app.use('/', indexRoutes);
 app.use('/', teaCardRouter);
-app.get('/teas', async (req, res) => {
-  try {
-    const teas = await Tea.findAll()
-    res.json(teas)
-  } catch (error) {
-    res.status(500).json({ error: 'Ошибка сервера' })
-  }
-})
+app.use('/', teaFetchRouter);
+
 app.listen(PORT ?? 3100, () => {
   console.log('Сервер запущен!');
 });
