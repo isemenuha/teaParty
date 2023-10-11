@@ -23,6 +23,7 @@ dbConnectionCheck();
 //   },
 // };
 const indexRoutes = require('./routes/indexRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 
 app.use(morgan('dev'));
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 // * Подключи сессии как мидлу
 // app.use(session(sessionConfig));
 app.use('/', indexRoutes);
+app.use('/profile', profileRoutes)
 
 app.listen(PORT ?? 3100, () => {
   console.log('Сервер запущен!');
