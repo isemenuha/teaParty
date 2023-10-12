@@ -18,7 +18,6 @@ form.addEventListener('submit', async (e) => {
       });
       console.log(response);
       const result = await response.json();
-
       const msg = document.querySelector('.logMsg');
       const divLog = document.querySelector('.logDiv')
       // window.location.replace('/') ///!!!

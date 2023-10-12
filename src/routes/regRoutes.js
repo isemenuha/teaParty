@@ -23,17 +23,18 @@ router.post('/', async (req, res) => {
     } else {
       const hash = await bcrypt.hash(password, 10);
       const newUser = await User.create({ name, email, password: hash });
-      console.log('Новый юзер', newUser);
 
       // * создавать сессию и отсылать куки
       // ! Исправляем ошибку:  will retry, error on last attempt: Error: ENOENT
       req.session.name = newUser.name;
       req.session.email = newUser.email;
       req.session.userid = newUser.id;
+      req.session.role = newUser.role;
       req.session.save(() => {
         res.json({
           msg: 'Пользователь зарегистрирован!',
           name: req.session.name,
+          role: req.session.role
         });
         // res.redirect('/');
         // res.sendStatus(200) ///!!!
