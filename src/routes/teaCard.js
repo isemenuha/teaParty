@@ -18,13 +18,11 @@ router.get('/tea-details', async (req, res) => {
         },
       ],
     });
-    console.log(comments);
     if (!tea) {
       return res.status(404).json({ error: 'Чай не найден' });
     }
     renderTemplate(TeaCard, { tea, comments, name }, res);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Внутренняя ошибка сервера' });
   }
 });
