@@ -9,25 +9,27 @@ module.exports = function AdminCab({ data }) {
           <div className="col-12 col-md">
             <h1 className="mt-5">Администрирование</h1>
             <h4 className="mt-5">Список сортов чая</h4>
-            {data.map((el, index) => (
-              <div className="tea-cover mt-3" key={index}>
-                <div className="card" data-id={el.id}>
-                  <div className="card-body d-flex justify-content-between">
-                    <h5 className="card-title"> {el.type} </h5>
-                    <button id={el.id} type="button" className="btn-danger">
-                      Удалить
-                    </button>
+            <div className="tealist">
+              {data.map((el, index) => (
+                <div className="tea-cover mt-3" key={index}>
+                  <div className="card" data-id={el.id}>
+                    <div className="card-body d-flex justify-content-between">
+                      <h5 className="card-title"> {el.type} </h5>
+                      <button id={el.id} type="button" className="btn-danger">
+                        Удалить
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="row justify-content-center mt-5">
           <div className="col-md-6">
             <h4>Добавить чай</h4>
-            <form action="/profile" method="POST" className="mt-3 mb-5" encType="multipart/form-data" id="loginForm">
+            <form action="/profile" method="POST" className="jopa mt-3 mb-5" encType="multipart/form-data" id="loginForm">
               <label htmlFor="exampleInput1" className="form-label">
                 Сорт чая
               </label>

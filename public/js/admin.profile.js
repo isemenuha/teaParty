@@ -1,5 +1,6 @@
 const teadiv = document.querySelector('.tea-cards');
-const form = document.querySelector('.jopa');	
+const form = document.querySelector('.jopa');
+const list = document.querySelector('.tealist');
 
 teadiv.addEventListener('click', async (e) => {
   try {
@@ -25,28 +26,41 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const data = new FormData(form);
-    
+
     const response = await fetch('profile/', {
       method: 'POST',
       body: data,
     });
     const result = await response.json();
-    console.log('!!!!!!!!!!!!!!', result)
-    const newPost = `  
-    <div class='tea-cover'>
-    <div key={index} class="card" data-id = ${result.id}>
-    <div class="card-body">
-      <h5 class="card-title"> ${result.type} </h5>
-      <button id = ${result.id} type="button"  class="btn-danger">
-        Удалить
-      </button>
+    console.log('!!!!!!!!!!!!!!', result);
+    const newPost = `
+  <div class="tea-cover mt-3">
+    <div class="card" data-id=${result.id}>
+      <div class="card-body d-flex justify-content-between">
+        <h5 class="card-title"> ${result.type} </h5>
+        <button id=${result.id} type="button" class="btn-danger">
+          Удалить
+        </button>
+      </div>
     </div>
-    </div>
-    </div>`
-    teadiv.insertAdjacentHTML('afterbegin', newPost);
-    document.querySelectorAll('input').forEach((el) => el.value = '');
+  </div>
+`;
+    list.insertAdjacentHTML('beforeend', newPost);
+    document.querySelectorAll('input').forEach((el) => (el.value = ''));
   } catch (error) {
     console.log(error);
   }
 });
 
+{
+  /* <div class='tea-cover'>
+<div key={index} class="card" data-id = ${result.id}>
+<div class="card-body">
+  <h5 class="card-title"> ${result.type} </h5>
+  <button id = ${result.id} type="button"  class="btn-danger">
+    Удалить
+  </button>
+</div>
+</div>
+</div> */
+}

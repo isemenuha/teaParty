@@ -1,7 +1,7 @@
 const form = document.querySelector('#loginForm');
 
 form.addEventListener('submit', async (e) => {
-  e.preventDefault()
+  e.preventDefault();
   const data = new FormData(form);
   const res = Object.fromEntries(data);
   console.log('res', res);
@@ -19,13 +19,13 @@ form.addEventListener('submit', async (e) => {
       console.log(response);
       const result = await response.json();
       const msg = document.querySelector('.logMsg');
-      const divLog = document.querySelector('.logDiv')
+      const divLog = document.querySelector('.logDiv');
       // window.location.replace('/') ///!!!
       if (result.err) {
         divLog.innerText = result.err;
         divLog.style.color = 'red';
 
-        document.querySelectorAll('input').forEach((el) => el.value = '');
+        document.querySelectorAll('input').forEach((el) => (el.value = ''));
       } else {
         divLog.innerText = result.msg;
         divLog.style.color = 'green';
@@ -42,18 +42,17 @@ form.addEventListener('submit', async (e) => {
         <ul class="navbar-nav">
           <li class="nav-item">
             <span class="nav-link">
-              Hi, ${result.name}
+              Привет, ${result.name}
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
+            <a class="nav-link" href="/logout">Выйти</a>
           </li>
         </ul>
        </div>
         `;
         nav.insertAdjacentHTML('beforeend', html);
       }
-
     } catch (error) {
       console.log(`Что-то сломалось ==> ${error}`);
       alert(`Что-то сломалось ==> ${error}`);
