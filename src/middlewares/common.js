@@ -15,7 +15,7 @@ const checkUser = (req, res, next) => {
   }
   
   const checkSession = (req, res, next) => {
-    console.log('В сессии=>', req.session);
+    // console.log('В сессии=>', req.session);
     next()
   }
   
