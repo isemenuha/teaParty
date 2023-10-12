@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Caveat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Caveat:wght@700&family=Pacifico&display=swap');
+header {
+  font-family: 'Pacifico', cursive;
+}
+body {
+  font-family: 'Caveat', cursive;
+  font-size: 130%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  font-family: 'Pacifico', cursive;
+}
+
+h3 {
+  font-size: 40px;
+}
+
+h4 {
+  font-size: 32px;
+}
+
+h5 {
+  font-size: 24px;
+}
+
+.navbar {
+  background-color: #e4e4e466;
+}
+
+.teacard {
+  border: none;
+}
+
+#loginForm {
+  max-width: 400px;
+}
