@@ -17,9 +17,9 @@ async function init() {
         [el.shirota, el.dolgota],
         {
           balloonContent: `
-          <h3>${el.type}</h3>
-          <p>${el.description}</p>
-          <a href="/tea-details?id=${el.id}">Подробнее</a>
+          <h3 class="maptext-h3">${el.type}</h3>
+          <p class="maptext-p">${el.description}</p>
+          <a class="maptext-a" href="/tea-details?id=${el.id}">Подробнее</a>
         `,
           hintContent: el.type,
         },
