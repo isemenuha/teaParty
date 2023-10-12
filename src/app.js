@@ -3,8 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 
-const session = require('express-session')
-const FileStore = require('session-file-store')(session)
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 
 const { secureRoute, checkSession } = require('./middlewares/common');
 
@@ -21,6 +21,7 @@ const indexRoutes = require('./routes/indexRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const regRoutes = require('./routes/regRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const commentsRoutes = require('./routes/commentsRoutes');
 
 // * Конфиг для куки в виде файла сессий
 const sessionConfig = {
@@ -41,7 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-app.use(session(sessionConfig))
+app.use(session(sessionConfig));
 
 app.use(checkSession);
 // * Подключи сессии как мидлу
@@ -53,8 +54,8 @@ app.use('/', teaFetchRouter);
 
 app.use('/login', secureRoute, loginRoutes);
 app.use('/register', secureRoute, regRoutes);
-app.use('/profile', profileRoutes)
-
+app.use('/profile', profileRoutes);
+app.use('/comments', commentsRoutes);
 
 app.listen(PORT ?? 3100, () => {
   console.log('Сервер запущен!');
