@@ -20,15 +20,18 @@ router.post('/', async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (user) {
       const checkPass = await bcrypt.compare(password, user.password);
+      console.log('ПАРОЛИ==========================>', user.password, password)
       if (checkPass) {
         req.session.name = user.name;
         req.session.email = user.email;
         req.session.userid = user.id;
+        req.session.role = user.role;
         // req.session.name = newUser.name;
         req.session.save(() => {
           res.json({
             msg: 'Пользователь авторизован',
             name: req.session.name,
+            role: req.session.role
           });
         //   res.redirect('/');
         //   res.sendStatus(200) ///!!!
