@@ -13,7 +13,7 @@ module.exports = function TeaCard({ tea, name, comments }) {
                 <div className="card mb-3 teacard">
                   <div className="row no-gutters">
                     <div className="col-md-4">
-                      <img src={`img/${tea.image}`} className="card-img shadow-sm" alt="Фото чая" />
+                      <img src={`${tea.image}`} className="card-img shadow-sm" alt="Фото чая" />
                     </div>
                     <div className="col-md-8 d-flex align-items-center">
                       <div className="card-body">
