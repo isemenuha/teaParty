@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 async function hash(word) {
   try {
     const hashedPassword = await bcrypt.hash(word, 10);
@@ -9,9 +9,14 @@ async function hash(word) {
   }
 }
 
-hash('jopa')
+hash('Vaxta4Life')
   .then((hashedPassword) => {
     console.log('Hashed Password:', hashedPassword);
   })
-  .catch((error) => {
-  });
+  .catch((error) => {});
+
+// vaxtoviksergey@example.com
+// Vaxta4Life
+
+// 1@1
+// 1

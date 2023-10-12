@@ -5,7 +5,7 @@ module.exports = function TeaCard({ tea, name, comments }) {
   return (
     <Layout name={name}>
       <script defer src="/js/teacard.js" />
-      <div className="container mt-5">
+      <div className="container mt-5 pb-5">
         <div className="row">
           <div className="col-12 col-md">
             {tea.map((tea, index) => (

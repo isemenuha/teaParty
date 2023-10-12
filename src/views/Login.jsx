@@ -7,7 +7,7 @@ module.exports = function Login() {
     <Layout>
       <div className="container mt-5">
         <div className="row">
-          <div className="col-12 col-md">
+          <div className="col-12">
             <div className="globalLogDiv">
               <div className="logDiv">
                 <h2>Войдите на сайт</h2>

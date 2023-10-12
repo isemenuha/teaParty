@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { Tea, User, Comment } = require('../../db/models')
+const { Tea, User, Comment } = require('../../db/models');
 const renderTemplate = require('../lib/renderTemplate');
 const Profile = require('../views/Profile.jsx');
 const tea = require('../../db/models/tea');
@@ -20,11 +20,11 @@ const upload = multer({ storage });
 
 router.get('/', async (req, res) => {
   try {
-    const { email } = req.session;
-    if(req.session.role === 'admin'){
+    const { email, name } = req.session;
+    if (req.session.role === 'admin') {
       const user = await User.findOne({ where: { email } });
       const data = await Tea.findAll({ raw: true });
-      renderTemplate(Profile, { data, user }, res);
+      renderTemplate(Profile, { data, user, name }, res);
     } else if (req.session.role === 'user') {
       const { userid } = req.session;
       const user = await User.findOne({ where: { email } });
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
         where: { userId: userid },
         include: [
           {
-            model: Tea
+            model: Tea,
           },
         ],
         raw: true,
@@ -42,10 +42,10 @@ router.get('/', async (req, res) => {
 
       const userName = user.name;
 
-      renderTemplate(Profile, { myComments, teas, user, userName }, res);
+      renderTemplate(Profile, { myComments, teas, user, userName, name }, res);
     }
   } catch (error) {
-   console.log(error);
+    console.log(error);
   }
 });
 
@@ -71,21 +71,19 @@ router.delete('/tea/:id', async (req, res) => {
   }
 });
 
-router.post('/', upload.single('file'), async (req,res) => {
+router.post('/', upload.single('file'), async (req, res) => {
   try {
-    console.log("Jopa=========>", req.body.type);
-// console.log(Object.fromEntries(req.body))
+    console.log('Jopa=========>', req.body.type);
+    // console.log(Object.fromEntries(req.body))
     const { file } = req;
     console.log(file.originalname);
-    const { type, shirota, dolgota, description } = req.body
+    const { type, shirota, dolgota, description } = req.body;
     const image = `/img/${file.originalname}`;
-    const newTea = await Tea.create({image, type, shirota, dolgota, description })
-    res.json(newTea)
-  }catch(error) {
-    console.log(error)
+    const newTea = await Tea.create({ image, type, shirota, dolgota, description });
+    res.json(newTea);
+  } catch (error) {
+    console.log(error);
   }
-})
-
-
+});
 
 module.exports = router;
